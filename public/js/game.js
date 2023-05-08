@@ -81,12 +81,12 @@ function startTimer(ms) {
         if (secs === 10) clock.play();
         document.querySelector('#clock').textContent = secs;
         // if (hints[0] && wordP && secs === hints[0].displayTime && pad.readOnly) {
-        if (hints[0] && wordP && secs === hints[0].displayTime) {
-            wordP.textContent = hints[0].hint;
-            hint.play();
-            animateCSS(wordP, 'tada', false);
-            hints.shift();
-        }
+        // if (hints[0] && wordP && secs === hints[0].displayTime) {
+        //     wordP.textContent = hints[0].hint;
+        //     hint.play();
+        //     animateCSS(wordP, 'tada', false);
+        //     hints.shift();
+        // }
         secs--;
         return updateClock;
     }()), 1000);
@@ -195,7 +195,7 @@ socket.on('endGame', async ({ stats }) => {
 
     clearInterval(timerID);
     document.querySelector('#clock').textContent = 0;
-    await animateCSS('#gameZone', 'fadeOutLeft');
+    // await animateCSS('#gameZone', 'fadeOutLeft');
     document.querySelector('#gameZone').remove();
 
     players.forEach((playerID) => {
@@ -228,7 +228,7 @@ socket.on('endGame', async ({ stats }) => {
     clock.stop();
     gameOver.play();
     document.querySelector('#gameEnded').classList.remove('d-none');
-    animateCSS('#gameEnded>div', 'fadeInRight');
+    // animateCSS('#gameEnded>div', 'fadeInRight');
 });
 
 // eslint-disable-next-line func-names

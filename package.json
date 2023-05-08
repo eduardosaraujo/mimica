@@ -14,13 +14,16 @@
     "express": "^4.17.1",
     "grapheme-splitter": "^1.0.4",
     "leven": "^3.1.0",
-    "nanoid": "^3.1.20",
+    "nanoid": "^3.3.6",
     "socket.io": "^3.1.0"
   },
   "devDependencies": {
     "eslint": "^7.18.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1"
+  },
+  "directories": {
+    "assets:": "/public/assets"
   },
   "repository": {
     "type": "git",

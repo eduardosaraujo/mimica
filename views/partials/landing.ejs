@@ -1,5 +1,5 @@
 <section class="container" id="landing">
-    <div class="px-4 py-5 my-5 text-center">
+    <div class="px-4 my-5 text-center">
         <img class="d-block mx-auto mb-4" src="/assets/logo.png" alt="" width="144">
         <h1 class="display-5 fw-bold text-body-emphasis">Creating lobby</h1>
         <div class="col-lg-6 mx-auto">
@@ -9,6 +9,12 @@
     <div class="row justify-content-center mx-0">
         <div class="col-lg-6 bg-white rounded p-3">
             <form class="">
+                <div class="form-floating col-4 mx-auto">
+                    <img id="avatar" class="img-fluid rounded-circle mb-4 mb-sm-0"
+                        src="https://avatars.dicebear.com/4.5/api/avataaars/.svg" alt="Avatar">
+                </div>
+                <small class="text-body-secondary mb-4 text-muted" style="display: table; margin: auto;">Your avatar style is based on your nickname.</small>
+                
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control rounded-3" id="playerName" placeholder="Name">
                     <label for="playerName">What is your nickname?</label>
@@ -22,11 +28,7 @@
                     </select>
                     <label for="playerAvatar">What is your avatar?</label>
                 </div>
-                <small class="text-body-secondary">Your avatar style is based on your nickname.</small>
-                <div class="form-floating col-4 mx-auto mb-3">
-                    <img id="avatar" class="img-fluid rounded-circle mb-4 mb-sm-0"
-                        src="https://avatars.dicebear.com/4.5/api/avataaars/.svg" alt="Avatar">
-                </div>
+                
                 <% if(!roomID) { %>
                     <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
                         style="background-color: #20c997; border-color: #20c997;" id="createRoom" type="button">Create

@@ -1,13 +1,14 @@
 <section class="container d-none" id="settings">
-    <div class="px-4 my-5 text-center">
+    <div class="px-4 my-5">
         <img class="d-block mx-auto mb-4" src="/assets/logo.png" alt="" width="144">
         <span>
-            <h1 class="display-5">Lobby code: </h1>
-            <h1 id="lobby_code_text" class="display-5 fw-bold text-body-emphasis"></h1>
+            <h1 class="fw-bold" style="color: #008080;">Share Lobby</h1>
         </span>
         <div class="col-lg-6 mx-auto">
             <p class="lead mb-4">Invite your friends to start playing!</p>
         </div>
+        <h4 id="lobby_code_text" class="display-6 text-body-emphasis"></h4>
+
     </div>
     <div class="">
         <div class="d-grid">
@@ -16,12 +17,14 @@
             <div class="input-group mb-3">
                 <input type="text" id="gameLink" class="form-control text-center fw-bold bg-white"
                     value="http://localhost:3000/" readonly>
-                <button class="btn btn-warning" type="button" id="copy">Copy Link</button>
+                <button class="btn btn-warning" type="button" id="copy">
+                    <i class="bi bi-files"></i>
+                </button>
             </div>
         </div>
-        <div class="col-md-6 order-2 order-md-0 bg-white rounded h-100 p-3">
+        <div class="col-md-4 order-2 order-md-0 bg-white rounded h-100 p-3">
             <h1 class="text-center">Room Options</h1>
-            <div class="form-floating mb-3">
+            <div class="form-floating mb-2">
                 <!-- <input type="email" class="form-control rounded-3" id="playerName" placeholder="Name"> -->
                 <!-- <label for="playerName">What is your nickname?</label> -->
                 <select class="form-select" id="rounds">
@@ -51,7 +54,7 @@
                     <option value="10">10</option>
                 </select>
             </div> -->
-            <div class="form-floating mb-3">
+            <div class="form-floating mb-2">
                 <select class="form-select" id="time">
                     <option value="30">30</option>
                     <option value="40" selected>40</option>
@@ -102,7 +105,7 @@
 
             <div class="col-md-6 p-3">
                 <h1 class="text-center">Players</h1>
-                <div class="row mt-4 mx-0" style="height: 20em; overflow-y: auto;" id="playersDiv"></div>
+                <div class="row mt-4 mx-0" style="height: 10em; overflow-y: auto;" id="playersDiv"></div>
             </div>
             <% if(!roomID) { %>
                 <!-- <div class="input-group mb-3 hidden">

@@ -3,6 +3,9 @@ let timerID = 0;
 let pickWordID = 0;
 let hints = [];
 
+const role = document.getElementById('role');
+const msg = document.getElementById('message');
+
 const yourTurn = new Howl({
     src: ['audio/your-turn.mp3'],
 });
@@ -54,14 +57,14 @@ function createScoreCard(players) {
         const p1 = document.createElement('p');
         const p2 = document.createElement('p');
         const name = document.createTextNode(player.name);
-        const score = document.createTextNode('Score: 0');
+        const score = document.createTextNode('Score: 0 points');
 
         img.src = player.avatar;
         img.classList.add('img-fluid', 'rounded-circle');
         div.classList.add('row', 'justify-content-end', 'py-1', 'align-items-center');
         avatar.classList.add('col-5', 'col-xl-4');
         details.classList.add('col-7', 'col-xl-6', 'text-center', 'my-auto');
-        p1.classList.add('mb-0');
+        p1.classList.add('mb-0', 'fw-bold');
         p2.classList.add('mb-0');
         div.id = `mimica-${player.id}`;
         div.append(details, avatar);
@@ -75,10 +78,12 @@ function createScoreCard(players) {
 
 function startTimer(ms) {
     let secs = ms / 1000;
+    //msg.innerText = "Represent your activity using only gestures";
     const id = setInterval((function updateClock() {
         const wordP = document.querySelector('#wordDiv > p.lead.fw-bold.mb-0');
         if (secs === 0) clearInterval(id);
         if (secs === 10) clock.play();
+        document.getElementById("clock_spinner").style.visibility = "initial";
         document.querySelector('#clock').textContent = secs;
         // if (hints[0] && wordP && secs === hints[0].displayTime && pad.readOnly) {
         // if (hints[0] && wordP && secs === hints[0].displayTime) {
@@ -128,6 +133,9 @@ socket.on('choosing', ({ name }) => {
     document.querySelector('#clock').textContent = 0;
     clearInterval(timerID);
     clock.stop();
+    document.getElementById("clock_spinner").style.visibility = "hidden";
+    role.innerText = "Guesser";
+    msg.innerText = "Guess the activity represented by the mime";
 });
 
 socket.on('settingsUpdate', (data) => {
@@ -143,7 +151,10 @@ socket.on('chooseWord', async ([word1, word2, word3]) => {
     const btn1 = document.createElement('button');
     const btn2 = document.createElement('button');
     const btn3 = document.createElement('button');
-    const text = document.createTextNode('Choose a word');
+    
+    role.innerText = "Mime";
+    msg.innerText = "Choose an activity to mime";
+
     btn1.classList.add('btn', 'btn-outline-success', 'rounded-pill', 'mx-2');
     btn3.classList.add('btn', 'btn-outline-success', 'rounded-pill', 'mx-2');
     btn2.classList.add('btn', 'btn-outline-success', 'rounded-pill', 'mx-2');
@@ -154,12 +165,13 @@ socket.on('chooseWord', async ([word1, word2, word3]) => {
     btn1.addEventListener('click', () => chooseWord(word1));
     btn2.addEventListener('click', () => chooseWord(word2));
     btn3.addEventListener('click', () => chooseWord(word3));
-    p.append(text);
+    
     document.querySelector('#wordDiv').innerHTML = '';
     document.querySelector('#wordDiv').append(p, btn1, btn2, btn3);
     document.querySelector('#clock').textContent = 0;
     clearInterval(timerID);
     clock.stop();
+    document.getElementById("clock_spinner").style.visibility = "hidden";
     yourTurn.play();
     pickWordID = setTimeout(() => chooseWord(word2), 15000);
 });
@@ -185,8 +197,8 @@ socket.on('updateScore', ({
     drawerID,
     drawerScore,
 }) => {
-    document.querySelector(`#mimica-${playerID}>div p:last-child`).textContent = `Score: ${score}`;
-    document.querySelector(`#mimica-${drawerID}>div p:last-child`).textContent = `Score: ${drawerScore}`;
+    document.querySelector(`#mimica-${playerID}>div p:last-child`).textContent = `Score: ${score} points`;
+    document.querySelector(`#mimica-${drawerID}>div p:last-child`).textContent = `Score: ${drawerScore} points`;
 });
 
 socket.on('endGame', async ({ stats }) => {
@@ -226,6 +238,7 @@ socket.on('endGame', async ({ stats }) => {
         document.querySelector('#statsDiv').append(row, document.createElement('hr'));
     });
     clock.stop();
+    //document.querySelector('#clock_spinner').classList.add('d-none');
     gameOver.play();
     document.querySelector('#gameEnded').classList.remove('d-none');
     // animateCSS('#gameEnded>div', 'fadeInRight');

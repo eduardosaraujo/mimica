@@ -139,7 +139,8 @@ canvas {
 }
 
 .players {
-    height: 1em;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 /* players */

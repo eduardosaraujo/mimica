@@ -9,8 +9,10 @@ const my = {
 
 const settings = document.createElement('script');
 const game = document.createElement('script');
+// const shared = document.createElement('script');
 settings.src = 'js/settings.js';
 game.src = 'js/game.js';
+// shared.src = 'js/shared.js';
 document.body.append(settings, game);
 
 function updateAvatar() {

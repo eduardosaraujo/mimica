@@ -1,4 +1,5 @@
 /* global games, BONUS, round */
+// var fs = require('fs');
 const leven = require('leven');
 const GraphemeSplitter = require('grapheme-splitter');
 const {
@@ -115,6 +116,8 @@ class Game {
         } else {
             io.in(socket.roomID).emit('message', { ...data, name: socket.player.name });
         }
+
+        // fs.writeFileSync("asd.json", JSON.stringify(games));
     }
 
     async getPlayers() {

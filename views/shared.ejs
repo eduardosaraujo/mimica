@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrowdMimics - Shared</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body class="vh-100">
+
+
+
+    <div id="share_container" class="container-fluid">
+        <h1 class="display-5 mb-5">CrowdMimics</h1>
+    </div>
+
+    <script>
+
+        var container = document.getElementById("share_container");
+
+        function replaceAll(str, find, replace) {
+            return str.replace(new RegExp(find, 'g'), replace);
+        }
+
+        var stringified_games = "<%= JSON.stringify(games) %>";
+
+        // console.log(asda);
+
+        var filtered_games = replaceAll(stringified_games, '&#34;', '"');
+
+        // console.log(str);
+
+        var games = JSON.parse(filtered_games);
+
+        if (Object.keys(games).length > 0) {
+            for (var game in games) {
+
+                var card = document.createElement('div');
+                card.className = "card my-3 mx-3";
+                card.style.maxWidth = "max-content";
+                var card_header = document.createElement('div');
+                card_header.className = "card-header text-center";
+                card_header.innerHTML = "<span class=\"fw-bold \" style=\" font-size: 1.5rem; \" >" + game.toString() + "</span>";
+                var card_body = document.createElement('div');
+                card_body.className = "card-body";
+                var player_list = document.createElement('div');
+                player_list.className = "container";
+                var player_list_row = document.createElement('div');
+                player_list_row.className = "row row-cols-3";
+                // var card_title = document.createElement('h5');
+                // card_title.className = "card-title";
+                // card_title.innerHTML = "ID: " + d.toString();
+                // var card_text = document.createElement('p');
+                // card_text.className = "card-text";
+                // card_text.innerHTML = "asdasd.";
+
+                for (var player in games[game]) {
+                    if (player != "rounds" && player != "time" && player != "customWords" && player != "language") {
+
+                        var player_container_div = document.createElement('div');
+                        player_container_div.className = "col-xs d-flex align-items-center flex-column";
+                        // player_container_div.style.maxHeight = "2rem";
+
+                        for (var k in games[game][player]) {
+
+                            var avatar_name_div = document.createElement('div');
+                            avatar_name_div.className = "";
+                            var player_avatar = document.createElement('img');
+                            player_avatar.className = "";
+                            player_avatar.style.maxWidth = "2rem";
+                            var player_name = document.createElement('h6');
+                            var player_score = document.createElement('span');
+                            player_score.className = "fw-bold";
+
+                            player_score.innerHTML = games[game][player]["score"];
+                            player_name.innerHTML = games[game][player]["name"];
+                            player_avatar.src = games[game][player]["avatar"];
+                        }
+                        player_container_div.appendChild(player_avatar);
+                        player_container_div.appendChild(player_name);
+                        // player_container_div.appendChild(avatar_name_div);
+                        player_container_div.appendChild(player_score);
+                        player_list_row.appendChild(player_container_div);
+                    }
+                }
+
+                // card_body.appendChild();
+                card.append(card_header);
+                card.append(card_body);
+                player_list.appendChild(player_list_row);
+                card.append(player_list);
+                container.appendChild(card);
+            }
+        } else {
+
+            var card = document.createElement('div');
+            card.className = "card text-white bg-info mb-3";
+            var card_header = document.createElement('div');
+            card_header.className = "card-header";
+            card_header.innerHTML = "<i class=\"bi bi-info-circle-fill\"></i> Information";
+            var card_body = document.createElement('div');
+            card_body.className = "card-body";
+            var card_title = document.createElement('h5');
+            card_title.className = "card-title";
+            card_title.innerHTML = "404 no game found";
+            var card_text = document.createElement('p');
+            card_text.className = "card-text";
+            card_text.innerHTML = "Currently there are no active lobbies.";
+
+            card_body.appendChild(card_title);
+            card_body.appendChild(card_text);
+            card.appendChild(card_header);
+            card.appendChild(card_body);
+            container.appendChild(card);
+        }
+
+        // setTimeout(() => {
+        //     console.log("Delayed for 1 second.");
+        //     window.location.reload(1);
+        // }, "10000");
+    </script>
+
+    <!-- 
+        <script src="https://cdn.jsdelivr.net/npm/socket.io-client/dist/socket.io.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/howler@2.2.1/dist/howler.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+        <script src="js/avatar.js"></script>
+        <script src="js/shared.js"></script> -->
+</body>
+
+</html>

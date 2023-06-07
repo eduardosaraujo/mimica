@@ -9,6 +9,9 @@
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
 </head>
 
 <body class="vh-100">
@@ -16,7 +19,7 @@
 
 
     <div id="share_container" class="container-fluid">
-        <h1 class="display-5 mb-5">CrowdMimics</h1>
+        <h1 class="display-5 mb-5 text-center">CrowdMimics</h1>
     </div>
 
     <script>
@@ -51,7 +54,8 @@
                 var player_list = document.createElement('div');
                 player_list.className = "container";
                 var player_list_row = document.createElement('div');
-                player_list_row.className = "row row-cols-3";
+                player_list_row.className = "row row-cols-3 px-0";
+
                 // var card_title = document.createElement('h5');
                 // card_title.className = "card-title";
                 // card_title.innerHTML = "ID: " + d.toString();
@@ -72,19 +76,21 @@
                             avatar_name_div.className = "";
                             var player_avatar = document.createElement('img');
                             player_avatar.className = "";
-                            player_avatar.style.maxWidth = "2rem";
+                            player_avatar.style.width = "2rem";
                             var player_name = document.createElement('h6');
                             var player_score = document.createElement('span');
-                            player_score.className = "fw-bold";
+                            // player_score.className = "fw-bold";
+                            player_score.style.fontSize = "1.2rem";
+                            player_score.style.fontFamily = "'JetBrains Mono', monospace";
 
                             player_score.innerHTML = games[game][player]["score"];
                             player_name.innerHTML = games[game][player]["name"];
                             player_avatar.src = games[game][player]["avatar"];
                         }
+                        player_container_div.appendChild(player_score);
                         player_container_div.appendChild(player_avatar);
                         player_container_div.appendChild(player_name);
                         // player_container_div.appendChild(avatar_name_div);
-                        player_container_div.appendChild(player_score);
                         player_list_row.appendChild(player_container_div);
                     }
                 }
@@ -99,21 +105,15 @@
         } else {
 
             var card = document.createElement('div');
-            card.className = "card text-white bg-info mb-3";
-            var card_header = document.createElement('div');
-            card_header.className = "card-header";
-            card_header.innerHTML = "<i class=\"bi bi-info-circle-fill\"></i> Information";
-            var card_body = document.createElement('div');
-            card_body.className = "card-body";
-            var card_title = document.createElement('h5');
-            card_title.className = "card-title";
-            card_title.innerHTML = "404 no game found";
-            var card_text = document.createElement('p');
-            card_text.className = "card-text";
-            card_text.innerHTML = "Currently there are no active lobbies.";
+            card.className = "p-5 text-center bg-body-tertiary rounded-3";
+            card.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" fill=\"currentColor\" class=\"bi bi-moon-stars-fill\" viewBox=\"0 0 16 16\"><path d=\"M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z\"/><path d=\"M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z\"/></svg>";
+            var card_header = document.createElement('h1');
+            card_header.className = "text-body-emphasis mt-4";
+            card_header.innerHTML = "Everyone is sleeping";
+            var card_body = document.createElement('p');
+            card_body.className = "col-lg-8 mx-auto fs-5 text-muted";
+            card_body.innerHTML = "Currently there are not active lobbies or games. <br> Come back later or start your own game!"
 
-            card_body.appendChild(card_title);
-            card_body.appendChild(card_text);
             card.appendChild(card_header);
             card.appendChild(card_body);
             container.appendChild(card);

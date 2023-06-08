@@ -62,8 +62,8 @@ function putPlayer(player) {
         // await animateCSS(div, 'fadeInDown', false);
     };
     player_count += 1;
-    console.log(player_count);
-    document.getElementById("player_count").appendChild(document.createTextNode(player_count));
+    // console.log(player_count);
+    document.getElementById("player_count").innerHTML = player_count;
 }
 
 function showCanvasArea() {
@@ -83,6 +83,8 @@ socket.on('disconnection', async (player) => {
 socket.on('startGame', showCanvasArea);
 
 if (searchParams.has('id')) {
+
+    lobby_code_text.appendChild(document.createTextNode(searchParams.get('id').toString()));
     // player
     document.querySelector('#rounds').setAttribute('disabled', true);
     document.querySelector('#time').setAttribute('disabled', true);

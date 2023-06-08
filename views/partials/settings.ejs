@@ -1,5 +1,5 @@
 <section class="container d-none" id="settings">
-    <div class="px-4 my-5 text-center">
+    <div class="px-4 my-3 text-center">
         <img class="d-block mx-auto mb-4" src="/assets/logo.png" alt="" width="144">
         <span>
             <h1 class="display-5 fw-bold text-body-emphasis">Share lobby</h1>
@@ -8,8 +8,8 @@
         <div class="col-lg-6 mx-auto">
             <p class="lead mb-4 ">Invite your friends to start playing!</p>
         </div>
-        <span>
-            <h4 class="display-6">Lobby code: </h4>
+        <span class="d-inline-flex">
+            <h4 class="display-6 mx-2">ID:</h4>
             <h4 id="lobby_code_text" class="display-6 fw-bold"></h4>
         </span>
     </div>
@@ -43,7 +43,7 @@
                 <button id="btn_collapse_settings" class="accordion-button collapsed" type="button"
                     data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
                     aria-controls="collapseTwo">
-                    <span><i class="bi bi-gear"></i> Lobby settings</span>
+                    <span><i class="bi bi-gear"></i> Game settings</span>
                 </button>
             </h2>
             <div id="div_collapse_settings" class="accordion-collapse collapse" aria-labelledby="headingTwo"
@@ -62,7 +62,7 @@
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                             </select>
-                            <label for="rounds">Number of rounds</label>
+                            <label for="rounds" class="small px-0">Number of rounds</label>
                         </div>
                         <div class="form-floating mb-2 col-5">
                             <select class="form-select" id="time">
@@ -83,7 +83,7 @@
                                 <option value="170">170 seconds</option>
                                 <option value="180">180 seconds</option>
                             </select>
-                            <label for="time">Duration of rounds</label>
+                            <label for="time" class="small px-0">Round duration</label>
                         </div>
 
                     </div>

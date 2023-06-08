@@ -47,7 +47,7 @@
 
                 var card = document.createElement('div');
                 card.className = "card my-3 mx-3";
-                card.style.maxWidth = "max-content";
+                card.style.maxWidth = "fit-content";
                 var card_header = document.createElement('div');
                 card_header.className = "card-header text-center";
                 card_header.innerHTML = "<span class=\"fw-bold \" style=\" font-size: 1.5rem; \" >" + game.toString() + "</span>";
@@ -56,21 +56,23 @@
                 var player_list = document.createElement('div');
                 player_list.className = "container";
                 var player_list_row = document.createElement('div');
-                player_list_row.className = "row row-cols-3 px-0";
-
-                // var card_title = document.createElement('h5');
-                // card_title.className = "card-title";
-                // card_title.innerHTML = "ID: " + d.toString();
-                // var card_text = document.createElement('p');
-                // card_text.className = "card-text";
-                // card_text.innerHTML = "asdasd.";
+                player_list_row.className = "row row-cols-3 px-1";
 
                 for (var player in games[game]) {
-                    if (player != "rounds" && player != "time" && player != "customWords" && player != "language" && player != "currentWord" && player != "drawer" && player != "totalGuesses") {
+
+                    if (player != "currentWord"
+                        && player != "customWords"
+                        && player != "drawer"
+                        && player != "probability"
+                        && player != "language"
+                        && player != "rounds"
+                        && player != "time"
+                        && player != "totalGuesses"
+                        && player != "messages"
+                        && player != "startTime") {
 
                         var player_container_div = document.createElement('div');
                         player_container_div.className = "col-xs d-flex align-items-center flex-column";
-                        // player_container_div.style.maxHeight = "2rem";
 
                         for (var k in games[game][player]) {
 
@@ -80,6 +82,7 @@
                             player_avatar.className = "";
                             player_avatar.style.width = "2rem";
                             var player_name = document.createElement('h6');
+                            player_name.className = "d-flex";
                             var player_score = document.createElement('span');
                             // player_score.className = "fw-bold";
                             player_score.style.fontSize = "1.2rem";
@@ -89,10 +92,28 @@
                             player_name.innerHTML = games[game][player]["name"];
                             player_avatar.src = games[game][player]["avatar"];
                         }
+
+                        var player_badge = document.createElement('span');
+                        player_badge.className = "fw-bold";
+                        player_badge.style.width = "21px";
+                        player_badge.style.height = "21px";
+                        player_badge.style.borderRadius = "100%";
+                        player_badge.style.border = "1px solid gray";
+                        player_badge.style.lineHeight = "15px";
+
+                        if (games[game]["drawer"] == player) {
+                            player_badge.style.backgroundColor = "#c8f7c8";
+                            player_badge.style.textIndent = "2px";
+                            player_badge.innerHTML = "M";
+                        } else {
+                            player_badge.style.textIndent = "4px";
+                            player_badge.innerHTML = "G";
+                        }
+
                         player_container_div.appendChild(player_score);
                         player_container_div.appendChild(player_avatar);
                         player_container_div.appendChild(player_name);
-                        // player_container_div.appendChild(avatar_name_div);
+                        player_container_div.appendChild(player_badge);
                         player_list_row.appendChild(player_container_div);
                     }
                 }

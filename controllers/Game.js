@@ -11,6 +11,7 @@ const {
 
 const splitter = new GraphemeSplitter();
 class Game {
+
     constructor(io, socket) {
         this.io = io;
         this.socket = socket;
@@ -114,7 +115,10 @@ class Game {
             io.in(socket.roomID).emit('message', { ...data, name: socket.player.name });
             if (games[socket.roomID].drawer !== socket.id && !socket.hasGuessed) socket.emit('closeGuess', { message: 'That was very close!' });
         } else {
-            games[socket.roomID]["messages"] = data;
+            var stringified_message = JSON.stringify(data);
+            var str_message = JSON.parse(stringified_message);
+            // console.log(str_message.message);
+            games[socket.roomID]["messages"].push({ name: socket.player.name, message: str_message });
             io.in(socket.roomID).emit('message', { ...data, name: socket.player.name });
         }
 

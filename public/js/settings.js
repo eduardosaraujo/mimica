@@ -52,8 +52,10 @@ function putPlayer(player) {
     p.classList.add('text-center');
     img.src = player.avatar;
     img.alt = player.name;
-    img.classList.add('img-fluid', 'rounded-circle');
-    div.classList.add('col-4', 'col-sm-3', 'col-md-4', 'col-lg-3');
+    img.width = "50";
+    img.style.maxWidth = "50px !important";
+    img.classList.add('rounded-circle');
+    div.className = "col-xs d-flex align-items-center flex-column";
     img.onload = async () => {
         div.appendChild(img);
         div.appendChild(p);

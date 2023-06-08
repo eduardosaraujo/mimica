@@ -57,21 +57,21 @@ function createScoreCard(players) {
         const p1 = document.createElement('p');
         const p2 = document.createElement('p');
         const name = document.createTextNode(player.name);
-        const score = document.createTextNode('Score: 0 points');
+        const score = document.createTextNode('0 pts');
 
         img.src = player.avatar;
         img.classList.add('img-fluid', 'rounded-circle');
-        div.classList.add('row', 'justify-content-end', 'py-1', 'align-items-center');
+        div.className = "col-xs d-flex align-items-center flex-column";
         avatar.classList.add('col-5', 'col-xl-4');
         details.classList.add('col-7', 'col-xl-6', 'text-center', 'my-auto');
-        p1.classList.add('mb-0', 'fw-bold');
-        p2.classList.add('mb-0');
+        p1.classList.add('mb-0');
+        p2.classList.add('mb-0', 'fw-bold');
         div.id = `mimica-${player.id}`;
         div.append(details, avatar);
         avatar.append(img);
-        details.append(p1, p2);
-        p1.append(name);
+        details.append(p2);
         p2.append(score);
+        div.append(name);
         document.querySelector('.players').append(div);
     });
 }
@@ -151,7 +151,7 @@ socket.on('chooseWord', async ([word1, word2, word3]) => {
     const btn1 = document.createElement('button');
     const btn2 = document.createElement('button');
     const btn3 = document.createElement('button');
-    
+
     role.innerText = "Mime";
     msg.innerText = "Choose an activity to mime";
 
@@ -165,7 +165,7 @@ socket.on('chooseWord', async ([word1, word2, word3]) => {
     btn1.addEventListener('click', () => chooseWord(word1));
     btn2.addEventListener('click', () => chooseWord(word2));
     btn3.addEventListener('click', () => chooseWord(word3));
-    
+
     document.querySelector('#wordDiv').innerHTML = '';
     document.querySelector('#wordDiv').append(p, btn1, btn2, btn3);
     document.querySelector('#clock').textContent = 0;

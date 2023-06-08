@@ -138,10 +138,10 @@ canvas {
     background-color: rgb(99, 48, 13);
 }
 
-.players {
+/* .players {
     overflow-x: hidden;
     overflow-y: scroll;
-}
+} */
 
 /* players */
 div.players div.row:nth-of-type(2n+1) {
@@ -157,10 +157,18 @@ div.players div.row:nth-of-type(2n) {
     overflow-y: auto;
     height: 35vh;
     scroll-behavior: smooth;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    text-align: left;
+}
+
+.messages p {
+    height: 24px;
+    line-height: 8px;
 }
 
 .messages p:nth-of-type(2n) {
-    background-color: rgba(207, 204, 204, 0.973);
+    background-color: rgba(240, 240, 240, 0.5);
 }
 
 .correct {
@@ -178,5 +186,15 @@ div.players div.row:nth-of-type(2n) {
 @media (max-width: 992px) {
     .messages {
         height: 35vh;
+    }
+}
+
+@keyframes countdown {
+    from {
+        stroke-dashoffset: 0px;
+    }
+
+    to {
+        stroke-dashoffset: 113px;
     }
 }

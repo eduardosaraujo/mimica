@@ -40,6 +40,8 @@
 
         var games = JSON.parse(filtered_games);
 
+        console.log(games);
+
         if (Object.keys(games).length > 0) {
             for (var game in games) {
 
@@ -64,7 +66,7 @@
                 // card_text.innerHTML = "asdasd.";
 
                 for (var player in games[game]) {
-                    if (player != "rounds" && player != "time" && player != "customWords" && player != "language") {
+                    if (player != "rounds" && player != "time" && player != "customWords" && player != "language" && player != "currentWord" && player != "drawer" && player != "totalGuesses") {
 
                         var player_container_div = document.createElement('div');
                         player_container_div.className = "col-xs d-flex align-items-center flex-column";

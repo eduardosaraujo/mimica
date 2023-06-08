@@ -114,6 +114,7 @@ class Game {
             io.in(socket.roomID).emit('message', { ...data, name: socket.player.name });
             if (games[socket.roomID].drawer !== socket.id && !socket.hasGuessed) socket.emit('closeGuess', { message: 'That was very close!' });
         } else {
+            games[socket.roomID]["messages"] = data;
             io.in(socket.roomID).emit('message', { ...data, name: socket.player.name });
         }
 

@@ -45,6 +45,7 @@ class Game {
         const players = Array.from(await io.in(socket.roomID).allSockets());
         socket.to(socket.roomID).emit('startGame');
         for (let j = 0; j < rounds; j++) {
+            games[socket.roomID]["currentRound"] = j;
             /* eslint-disable no-await-in-loop */
             for (let i = 0; i < players.length; i++) {
                 await this.giveTurnTo(players, i);

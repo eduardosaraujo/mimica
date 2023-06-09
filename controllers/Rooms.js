@@ -21,6 +21,7 @@ class Room {
         games[id][socket.id].name = player.name;
         games[id][socket.id].avatar = player.avatar;
         games[id]["messages"] = [];
+        games[id]["currentRound"] = 0;
         console.log(games);
         socket.player = player;
         socket.roomID = id;

@@ -116,19 +116,35 @@
                         }
                     }
 
-                    console.log("asd");
-                    console.log(games[game]["messages"]);
+                    // console.log("asd");
+                    // console.log(games[game]["messages"]);
 
-                    for (var m of games[game]["messages"]) {
-                        console.log("test");
-                        console.log(m);
-                    }
+
 
                     // card_body.appendChild();
                     card.append(card_header);
                     // card.append(card_body);
                     player_list.appendChild(player_list_row);
                     card.append(player_list);
+                    card.appendChild(document.createTextNode("Chat: "));
+                    for (var m of games[game]["messages"]) {
+                        var message_ = document.createElement("p");
+                        var filtered_msg = replaceAll(JSON.stringify(m), '&#34;', '"');
+                        // console.log(filtered_msg);
+                        var msg = JSON.parse(filtered_msg);
+                        // console.log();
+
+
+                        if (m.name == "Host") {
+                            message_.innerHTML = "<b>" + m.name + "</b>: " + m.message;
+                        } else {
+                            message_.innerHTML = "<b>" + m.name + "</b>: " + m.message.message;
+                        }
+
+                        card.appendChild(message_);
+                        // console.log("test");
+                        console.log(m.message);
+                    }
                     container.appendChild(card);
                 } else {
                     var card = document.createElement('div');

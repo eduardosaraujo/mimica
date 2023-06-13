@@ -190,6 +190,7 @@ socket.on('message', appendMessage);
 socket.on('closeGuess', (data) => appendMessage(data, { closeGuess: true }));
 socket.on('correctGuess', (data) => appendMessage(data, { correctGuess: true }));
 socket.on('lastWord', ({ word }) => appendMessage({ message: `The word was ${word}` }, { lastWord: true }));
+// games[socket.roomID]["messages"].push({ name: "Host", message: socket.player.name + "has guessed the word!" });
 
 socket.on('updateScore', ({
     playerID,

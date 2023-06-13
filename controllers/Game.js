@@ -77,7 +77,11 @@ class Game {
             drawer.to(roomID).broadcast.emit('hints', getHints(word, roomID));
             games[roomID].startTime = Date.now() / 1000;
             io.to(roomID).emit('startTimer', { time });
-            if (await wait(roomID, drawer, time)) drawer.to(roomID).broadcast.emit('lastWord', { word });
+            if (await wait(roomID, drawer, time)) {
+                drawer.to(roomID).broadcast.emit('lastWord', { word });
+                games[socket.roomID]["messages"].push({ name: "Host", message: "The word was " + word });
+            }
+
         } catch (error) {
             console.log(error);
         }
@@ -115,7 +119,10 @@ class Game {
             socket.hasGuessed = true;
         } else if (distance < 3 && currentWord !== '') {
             io.in(socket.roomID).emit('message', { ...data, name: socket.player.name });
-            if (games[socket.roomID].drawer !== socket.id && !socket.hasGuessed) socket.emit('closeGuess', { message: 'That was very close!' });
+            if (games[socket.roomID].drawer !== socket.id && !socket.hasGuessed) {
+                socket.emit('closeGuess', { message: 'That was very close!' });
+                games[socket.roomID]["messages"].push({ name: "Host", message: socket.player.name + "almost guessed the word!" });
+            }
         } else {
             var stringified_message = JSON.stringify(data);
             var str_message = JSON.parse(stringified_message);

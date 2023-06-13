@@ -134,7 +134,6 @@
                         var msg = JSON.parse(filtered_msg);
                         // console.log();
 
-
                         if (m.name == "Host") {
                             message_.innerHTML = "<b>" + m.name + "</b>: " + m.message;
                         } else {
@@ -143,7 +142,7 @@
 
                         card.appendChild(message_);
                         // console.log("test");
-                        console.log(m.message);
+                        // console.log(m.message);
                     }
                     container.appendChild(card);
                 } else {
@@ -179,10 +178,10 @@
             container.appendChild(card);
         }
 
-        // setTimeout(() => {
-        //     console.log("Delayed for 1 second.");
-        //     window.location.reload(1);
-        // }, "10000");
+        setTimeout(() => {
+            console.log("Delayed for 1 second.");
+            window.location.reload(1);
+        }, "5000");
     </script>
 
     <!-- 

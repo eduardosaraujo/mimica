@@ -102,7 +102,7 @@ class Game {
                 const roomSize = io.sockets.adapter.rooms.get(socket.roomID).size;
                 socket.emit('correctGuess', { message: 'You guessed it right!', id: socket.id });
                 socket.broadcast.emit('correctGuess', { message: `${socket.player.name} has guessed the word!`, id: socket.id });
-                games[socket.roomID]["messages"].push({ name: "Host", message: socket.player.name + "has guessed the word!" });
+                games[socket.roomID]["messages"].push({ name: "Host", message: socket.player.name + " has guessed the word!" });
                 games[socket.roomID].totalGuesses++;
                 games[socket.roomID][socket.id].score += getScore(startTime, roundTime);
                 games[socket.roomID][drawer.id].score += BONUS;
@@ -121,7 +121,7 @@ class Game {
             io.in(socket.roomID).emit('message', { ...data, name: socket.player.name });
             if (games[socket.roomID].drawer !== socket.id && !socket.hasGuessed) {
                 socket.emit('closeGuess', { message: 'That was very close!' });
-                games[socket.roomID]["messages"].push({ name: "Host", message: socket.player.name + "almost guessed the word!" });
+                games[socket.roomID]["messages"].push({ name: "Host", message: socket.player.name + " almost guessed the word!" });
             }
         } else {
             var stringified_message = JSON.stringify(data);
